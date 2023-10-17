@@ -1,12 +1,12 @@
-import { Gameboard } from './assets/Gameboard';
-import { KeyTracking } from './assets/KeyTracking';
+import { Gameboard } from './components/Gameboard';
+import { KeyTracking } from './components/KeyTracking';
 import './App.css';
 import { useEffect, useState } from 'react';
-import { moveTiles } from './helpers/MoveTiles';
+import { updateBoard } from './helpers/UpdateBoard';
 
 function App() {
   const initialGameBoard = [
-    ['', '2', '', ''],
+    ['2', '2', '2', '2'],
     ['', '', '', ''],
     ['', '', '2', ''],
     ['', '', '', ''],
@@ -22,7 +22,8 @@ function App() {
   // moveTiles(direction, gameBoard, updateGameBoard);
   useEffect(() => {
     if (direction === '') return;
-    moveTiles(direction, gameBoard, updateGameBoard);
+    updateBoard(direction, gameBoard, updateGameBoard);
+    setDirection('');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [direction]);
   return (
