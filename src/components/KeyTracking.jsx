@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect } from 'react';
 
-export function KeyTracking({ direction, updateDirection }) {
+export function KeyTracking({ updateDirection }) {
   useEffect(() => {
     const handleKeyPress = (e) => {
       switch (e.key) {
@@ -32,7 +32,7 @@ export function KeyTracking({ direction, updateDirection }) {
 
   return (
     <div>
-      <h1>Press Arrow Keys {direction}</h1>
+      <h1>Press Arrow Keys</h1>
     </div>
   );
 }
