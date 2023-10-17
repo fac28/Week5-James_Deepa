@@ -2,7 +2,7 @@ import { Gameboard } from './components/Gameboard';
 import { KeyTracking } from './components/KeyTracking';
 import './App.css';
 import { useEffect, useState } from 'react';
-import { updateBoard } from './helpers/UpdateBoard';
+import { updateBoard } from './helpers/updateBoard';
 import { generateRandomTile } from './helpers/generateRandomTile';
 
 function App() {
