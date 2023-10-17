@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+.grid-row {
+  display: flex;
+  background-color: black;
+  width: 70vw;
+  height: 15vh;
+  gap: 2rem;
+  justify-content: space-around;
+}
+
+.grid-tile {
+  background-color: grey;
+  width: 20%;
+  height: 90%;
+}
