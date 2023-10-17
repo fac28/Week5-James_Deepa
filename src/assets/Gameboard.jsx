@@ -1,10 +1,5 @@
-export function Gameboard() {
-  const gameBoard = [
-    ['', '', '', ''],
-    ['', '', '', ''],
-    ['', '', '', ''],
-    ['', '', '', ''],
-  ];
+/* eslint-disable react/prop-types */
+export function Gameboard({ gameBoard }) {
   return (
     <div className='grid-container'>
       {gameBoard.map((rows, rowIndex) => {
