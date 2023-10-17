@@ -2,7 +2,6 @@ import { Gameboard } from './assets/Gameboard';
 // import { useState } from 'react';
 import './App.css';
 
-
 function App() {
   return (
     <>

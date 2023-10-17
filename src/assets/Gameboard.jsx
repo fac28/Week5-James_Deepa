@@ -1,10 +1,10 @@
 export function Gameboard() {
-    const gameBoard = [
-        ['', '', '', ''],
-        ['', '', '', ''],
-        ['', '', '', ''],
-        ['', '', '', ''],
-      ];
+  const gameBoard = [
+    ['', '', '', ''],
+    ['', '', '', ''],
+    ['', '', '', ''],
+    ['', '', '', ''],
+  ];
   return (
     <div className='grid-container'>
       {gameBoard.map((rows, rowIndex) => {
