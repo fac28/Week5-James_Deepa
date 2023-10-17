@@ -1,6 +1,6 @@
 import { transpose, setMergedTiles } from './MoveTiles';
 
-export const updateBoard = (direction, gameBoard, updateGameBoard) => {
+export const updateBoard = (direction, gameBoard, setGameBoardState) => {
   const newGameBoard = [...gameBoard];
   if (direction === 'left' || direction === 'right') {
     setMergedTiles(direction, newGameBoard);
@@ -12,9 +12,8 @@ export const updateBoard = (direction, gameBoard, updateGameBoard) => {
     setMergedTiles(direction, transposedBoard);
 
     // Transpose the board back to its original orientation
-    return updateGameBoard(transpose(transposedBoard));
+    return setGameBoardState(transpose(transposedBoard));
   }
-
   // Set the state with the updated game board
-  updateGameBoard(newGameBoard);
+  setGameBoardState(newGameBoard);
 };
