@@ -1,4 +1,4 @@
-import { transpose, setMergedTiles } from "./MoveTiles";
+import { transpose, setMergedTiles } from './MoveTiles';
 
 export const updateBoard = (direction, gameBoard, updateGameBoard) => {
   const newGameBoard = [...gameBoard];
@@ -18,4 +18,3 @@ export const updateBoard = (direction, gameBoard, updateGameBoard) => {
   // Set the state with the updated game board
   updateGameBoard(newGameBoard);
 };
-
