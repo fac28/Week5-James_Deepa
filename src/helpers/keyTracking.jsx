@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 import { useEffect } from 'react';
 
 export function KeyTracking({ updateDirection }) {
@@ -29,10 +30,4 @@ export function KeyTracking({ updateDirection }) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  return (
-    <div>
-      <h1>Press Arrow Keys</h1>
-    </div>
-  );
 }

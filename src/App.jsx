@@ -1,5 +1,5 @@
 import { Gameboard } from './components/Gameboard';
-import { KeyTracking } from './components/KeyTracking';
+import { KeyTracking } from './helpers/KeyTracking';
 import './App.css';
 import { useEffect, useState } from 'react';
 import { updateBoard } from './helpers/UpdateBoard';
