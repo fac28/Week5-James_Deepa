@@ -1,7 +1,8 @@
-/* eslint-disable react/prop-types */
 import { useEffect } from 'react';
 
 export const keyTracking = (updateDirection) => {
+  // maybe needs to be turned in to a custom hook?
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const handleKeyPress = (e) => {
       switch (e.key) {

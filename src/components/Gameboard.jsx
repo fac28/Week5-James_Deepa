@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 export function Gameboard({ gameBoard }) {
   return (
     <div className='grid-container'>
