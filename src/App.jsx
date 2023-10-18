@@ -6,6 +6,7 @@ import { updateBoard } from './helpers/updateBoard';
 import { generateRandomTile } from './helpers/generateRandomTile';
 import { initialGameBoardState, preGameOverBoardState } from './helpers/constants';
 import { Gameover } from './components/Gameover';
+import { Newgame } from './components/Newgame';
 function App() {
   const [gameBoard, setGameBoard] = useState(preGameOverBoardState);
   const [direction, setDirection] = useState('');
@@ -42,6 +43,7 @@ function App() {
     <>
       <h1>2048</h1>
       <Gameboard gameBoard={gameBoard} />
+      <Newgame setGameBoardState={setGameBoardState} />
       <Gameover
         setGameBoardState={setGameBoardState}
         gameOver={gameOver}
