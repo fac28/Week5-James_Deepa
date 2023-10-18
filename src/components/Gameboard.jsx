@@ -7,7 +7,7 @@ export function Gameboard({ gameBoard }) {
           <div className='grid-row' key={rowIndex}>
             {rows.map((tileValue, colIndex) => {
               return (
-                <div className='grid-tile' key={colIndex}>
+                <div className={`grid-tile tile-${tileValue}`} key={colIndex}>
                   {tileValue}
                 </div>
               );

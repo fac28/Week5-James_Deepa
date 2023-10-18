@@ -4,23 +4,21 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { updateBoard } from './helpers/updateBoard';
 import { generateRandomTile } from './helpers/generateRandomTile';
-
+import { initialGameBoardState, preGameOverBoardState } from './helpers/constants';
+import { Gameover } from './components/Gameover';
 function App() {
-  const initialGameBoard = [
-    ['', '', '', '2'],
-    ['', '', '', ''],
-    ['', '', '2', ''],
-    ['', '', '', ''],
-  ];
-  const [gameBoard, setGameBoard] = useState(initialGameBoard);
+  const [gameBoard, setGameBoard] = useState(preGameOverBoardState);
   const [direction, setDirection] = useState('');
+  const [gameOver, setGameOver] = useState(false);
   function setGameBoardState(newGameBoard) {
     return setGameBoard(newGameBoard);
   }
   function updateDirection(newDirection) {
     setDirection(newDirection);
   }
-
+  function updateGameOverState(toggleGameOver) {
+    setGameOver(!gameOver);
+  }
   useEffect(() => {
     if (direction === '') return;
     function mergeAndGenerate(direction) {
@@ -30,6 +28,8 @@ function App() {
           generateRandomTile(mergedBoard, (newBoard) => {
             setGameBoardState(newBoard);
           });
+        } else if (!gameBoard.flat().includes('') && !gameOver) {
+          updateGameOverState(gameOver);
         }
         setDirection('');
       });
@@ -43,6 +43,11 @@ function App() {
       <h1>2048</h1>
       <Gameboard gameBoard={gameBoard} />
       <KeyTracking updateDirection={updateDirection} />
+      <Gameover
+        setGameBoardState={setGameBoardState}
+        gameOver={gameOver}
+        updateGameOverState={updateGameOverState}
+      />
     </>
   );
 }
