@@ -1,4 +1,3 @@
-import React from 'react';
 import Confetti from 'react-confetti';
 import { initialGameBoardState } from '../helpers/constants';
 export const Win = ({ restartGame, winScore, updateWinScore, score, highScore }) => {

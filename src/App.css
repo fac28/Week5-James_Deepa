@@ -3,22 +3,21 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-
 }
-body{
-  background-color: #F8F0E5;
+body {
+  background-color: #f8f0e5;
   color: #c9a880;
 }
 .grid-container {
   display: grid;
   background-color: #dac0a3;
   border-radius: 5px;
-  gap: 10px; 
-  width:350px;
+  gap: 10px;
+  width: 350px;
   aspect-ratio: 1;
-  max-width: 500px; 
-  margin: 0 auto; 
-  padding: 10px; /
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 .grid-row {
@@ -31,61 +30,61 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ebe4d1; 
-  color: #c9a880; 
-  font-size: 3rem; 
+  background-color: #ebe4d1;
+  color: #c9a880;
+  font-size: 3rem;
   font-weight: bolder;
   height: 50px;
   border-radius: 5px;
-  padding: 10px; 
+  padding: 10px;
 }
 .grid-tile.tile-2 {
-  background-color: #dfd1ab; ;
+  background-color: #dfd1ab;
   color: #fff;
 }
 .grid-tile.tile-4 {
-  background-color: #c1b28a; ;
+  background-color: #c1b28a;
   color: #fff;
 }
 .grid-tile.tile-8 {
-  background-color: #97834b; ;
+  background-color: #97834b;
   color: #fff;
 }
 .grid-tile.tile-16 {
-  background-color: #bf9b39; ;
+  background-color: #bf9b39;
   color: #fff;
 }
 .grid-tile.tile-32 {
-  background-color: #d6bc39; ;
+  background-color: #d6bc39;
   color: #fff;
 }
 .grid-tile.tile-64 {
-  background-color: #c59921; ;
+  background-color: #c59921;
   color: #fff;
 }
 .grid-tile.tile-128 {
-  background-color: #b4870d; ;
+  background-color: #b4870d;
   color: #fff;
 }
 .grid-tile.tile-256 {
-  background-color: #cd990c; ;
+  background-color: #cd990c;
   color: #fff;
-  font-size: 2rem; 
+  font-size: 2rem;
 }
 .grid-tile.tile-512 {
-  background-color: #d69f09; ;
+  background-color: #d69f09;
   color: #fff;
-  font-size: 2rem; 
+  font-size: 2rem;
 }
 .grid-tile.tile-1024 {
-  background-color: #d17708; ;
+  background-color: #d17708;
   color: #fff;
-  font-size: 2rem; 
+  font-size: 2rem;
 }
 .grid-tile.tile-2048 {
-  background-color: #db5806; ;
+  background-color: #db5806;
   color: #fff;
-  font-size: 2rem; 
+  font-size: 2rem;
 }
 /* Styles for the modal overlay */
 .overlay {

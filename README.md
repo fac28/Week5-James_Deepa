@@ -1,3 +1,4 @@
+
 # Week5-James_Deepa
 
 You can find our deployed site here https://week5-deepa-james-2048.netlify.app/
@@ -40,4 +41,5 @@ public: Contains the HTML template and other public assets.
 
 React: The JavaScript library for building user interfaces.
 CSS: Styling for the game components.
-Create React App: The development environment for React.
+
+

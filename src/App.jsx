@@ -8,11 +8,7 @@ import './App.css';
 import { keyTracking } from './helpers/keyTracking';
 import { updateBoard } from './helpers/updateBoard';
 import { generateRandomTile } from './helpers/generateRandomTile';
-import {
-  initialGameBoardState,
-  preGameOverBoardState,
-  preWinBoardState,
-} from './helpers/constants';
+import { initialGameBoardState } from './helpers/constants';
 function App() {
   const [gameBoard, setGameBoard] = useState(() => {
     const localGameBoard = localStorage.getItem('GAMEBOARD');
@@ -63,6 +59,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem('GAMEBOARD', JSON.stringify(gameBoard));
     localStorage.setItem('SCORE', JSON.stringify(score));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameBoard]);
 
   useEffect(() => {
