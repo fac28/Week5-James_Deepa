@@ -1,15 +1,15 @@
 import { transpose, setMergedTiles } from './MoveTiles';
 
-export const updateBoard = (direction, gameBoard, setGameBoardState) => {
+export const updateBoard = (direction, gameBoard, score, updateScore, setGameBoardState) => {
   const newGameBoard = [...gameBoard];
   if (direction === 'left' || direction === 'right') {
-    setMergedTiles(direction, newGameBoard);
+    setMergedTiles(direction, newGameBoard, score, updateScore);
   } else if (direction === 'up' || direction === 'down') {
     // Transpose the board for easier processing
     const transposedBoard = transpose(newGameBoard);
 
     // Move tiles up or down
-    setMergedTiles(direction, transposedBoard);
+    setMergedTiles(direction, transposedBoard, score, updateScore);
 
     // Transpose the board back to its original orientation
     return setGameBoardState(transpose(transposedBoard));
