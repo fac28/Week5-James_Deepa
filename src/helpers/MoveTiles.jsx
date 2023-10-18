@@ -3,7 +3,7 @@ export function transpose(matrix) {
   return matrix[0].map((_, colIndex) => matrix.map((row) => row[colIndex]));
 }
 
-export function getMergedTiles(tiles, score, updateScore) {
+export function getMergedTiles(tiles, score) {
   let newScore = score;
   const mergedTiles = [];
   for (let i = 0; i < tiles.length; i++) {
@@ -18,8 +18,8 @@ export function getMergedTiles(tiles, score, updateScore) {
       mergedTiles.push(tiles[i]);
     }
   }
-  updateScore(newScore);
-  return mergedTiles;
+
+  return [mergedTiles, newScore];
 }
 
 export function checkDirection(mergedTiles, direction) {
@@ -36,10 +36,13 @@ export function checkDirection(mergedTiles, direction) {
 }
 
 export const setMergedTiles = (direction, board, score, updateScore) => {
+  let newScore = score;
   for (let position = 0; position < board.length; position++) {
     const tiles = board[position].filter((tile) => tile !== '');
-    const mergedTiles = getMergedTiles(tiles, score, updateScore);
+    const [mergedTiles, returnedScore] = getMergedTiles(tiles, newScore);
     checkDirection(mergedTiles, direction);
     board[position] = mergedTiles;
+    newScore = returnedScore;
   }
+  updateScore(newScore);
 };
