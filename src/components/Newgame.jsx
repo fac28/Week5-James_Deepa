@@ -1,12 +1,12 @@
 import { initialGameBoardState } from '../helpers/constants';
 
-export const Newgame = ({ setGameBoardState }) => {
+export const Newgame = ({ restartGame, score, highScore }) => {
   return (
     <div>
       <button
         className='button'
         onClick={() => {
-          setGameBoardState(initialGameBoardState);
+          restartGame(initialGameBoardState, score, highScore);
         }}
       >
         {' '}
