@@ -15,7 +15,8 @@ export function getMergedTiles(tiles, score, updateWinScore, winScore) {
         updateWinScore(winScore);
       }
       mergedTiles.push(newValue);
-      i++; // Skip the next tile since it's already merged
+      i++;
+      // Skip the next tile since it's already merged
     } else {
       // Keep the tile as is
       mergedTiles.push(tiles[i]);
