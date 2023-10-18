@@ -3,7 +3,7 @@ export function transpose(matrix) {
   return matrix[0].map((_, colIndex) => matrix.map((row) => row[colIndex]));
 }
 
-export function getMergedTiles(tiles, score) {
+export function getMergedTiles(tiles, score, updateWinScore, winScore) {
   let newScore = score;
   const mergedTiles = [];
   for (let i = 0; i < tiles.length; i++) {
@@ -11,6 +11,9 @@ export function getMergedTiles(tiles, score) {
       // Merge adjacent tiles when they are equal
       const newValue = Number(tiles[i]) * 2;
       newScore = newScore + newValue;
+      if (newValue == 2048) {
+        updateWinScore(winScore);
+      }
       mergedTiles.push(newValue);
       i++; // Skip the next tile since it's already merged
     } else {
@@ -35,11 +38,11 @@ export function checkDirection(mergedTiles, direction) {
   }
 }
 
-export const setMergedTiles = (direction, board, score, updateScore) => {
+export const setMergedTiles = (direction, board, score, updateScore, winScore, updateWinScore) => {
   let newScore = score;
   for (let position = 0; position < board.length; position++) {
     const tiles = board[position].filter((tile) => tile !== '');
-    const [mergedTiles, returnedScore] = getMergedTiles(tiles, newScore);
+    const [mergedTiles, returnedScore] = getMergedTiles(tiles, newScore, winScore, updateWinScore);
     checkDirection(mergedTiles, direction);
     board[position] = mergedTiles;
     newScore = returnedScore;
