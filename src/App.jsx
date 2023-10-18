@@ -1,5 +1,5 @@
 import { Gameboard } from './components/Gameboard';
-import { KeyTracking } from './components/KeyTracking';
+import { keyTracking } from './helpers/keyTracking';
 import './App.css';
 import { useEffect, useState } from 'react';
 import { updateBoard } from './helpers/updateBoard';
@@ -37,17 +37,17 @@ function App() {
     mergeAndGenerate(direction);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [direction]);
-
+  keyTracking(updateDirection);
   return (
     <>
       <h1>2048</h1>
       <Gameboard gameBoard={gameBoard} />
-      <KeyTracking updateDirection={updateDirection} />
       <Gameover
         setGameBoardState={setGameBoardState}
         gameOver={gameOver}
         updateGameOverState={updateGameOverState}
       />
+      {/* <h1>New Game</h1> */}
     </>
   );
 }
