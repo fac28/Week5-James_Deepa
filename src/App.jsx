@@ -14,12 +14,25 @@ import {
   preWinBoardState,
 } from './helpers/constants';
 function App() {
-  const [gameBoard, setGameBoard] = useState(preWinBoardState);
+  const [gameBoard, setGameBoard] = useState(() => {
+    const localGameBoard = localStorage.getItem('GAMEBOARD');
+    if (localGameBoard == null) return initialGameBoardState;
+    return JSON.parse(localGameBoard);
+  });
   const [direction, setDirection] = useState('');
   const [gameOver, setGameOver] = useState(false);
-  const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(0);
+  const [score, setScore] = useState(() => {
+    const localScore = localStorage.getItem('SCORE');
+    if (localScore == null) return 0;
+    return JSON.parse(localScore);
+  });
   const [winScore, setWinScore] = useState(false);
+  const [highScore, setHighScore] = useState(() => {
+    const localHighScore = localStorage.getItem('HIGHSCORETEST');
+    if (localHighScore == null) return 0;
+    return JSON.parse(localHighScore);
+  });
+
   function setGameBoardState(newGameBoard) {
     return setGameBoard(newGameBoard);
   }
@@ -42,6 +55,16 @@ function App() {
   function updateWinScore(toggleWinScore) {
     setWinScore(!toggleWinScore);
   }
+  useEffect(() => {
+    localStorage.setItem('HIGHSCORETEST', JSON.stringify(highScore));
+  }, [highScore]);
+  keyTracking(updateDirection);
+
+  useEffect(() => {
+    localStorage.setItem('GAMEBOARD', JSON.stringify(gameBoard));
+    localStorage.setItem('SCORE', JSON.stringify(score));
+  }, [gameBoard]);
+
   useEffect(() => {
     if (direction === '') return;
     function mergeAndGenerate(direction) {
@@ -68,7 +91,7 @@ function App() {
     mergeAndGenerate(direction);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [direction]);
-  keyTracking(updateDirection);
+
   return (
     <>
       <h1>2048</h1>
