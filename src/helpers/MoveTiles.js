@@ -1,4 +1,3 @@
-// Function to transpose a matrix (used for handling 'up' and 'down' directions)
 export function transpose(matrix) {
   return matrix[0].map((_, colIndex) => matrix.map((row) => row[colIndex]));
 }
@@ -8,7 +7,6 @@ export function getMergedTiles(tiles, score, setWinScore, winScore) {
   const mergedTiles = [];
   for (let i = 0; i < tiles.length; i++) {
     if (i < tiles.length - 1 && tiles[i] === tiles[i + 1]) {
-      // Merge adjacent tiles when they are equal
       const newValue = Number(tiles[i]) * 2;
       newScore = newScore + newValue;
       if (newValue == 2048) {
@@ -16,9 +14,7 @@ export function getMergedTiles(tiles, score, setWinScore, winScore) {
       }
       mergedTiles.push(newValue);
       i++;
-      // Skip the next tile since it's already merged
     } else {
-      // Keep the tile as is
       mergedTiles.push(tiles[i]);
     }
   }
