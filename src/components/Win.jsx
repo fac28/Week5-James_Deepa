@@ -1,7 +1,5 @@
 import Confetti from 'react-confetti';
-import { initialGameBoardState } from '../helpers/constants';
-export const Win = ({ restartGame, winScore, updateWinScore, score, highScore }) => {
-  if (!winScore) return;
+export const Win = ({ restartGame, winScore, setWinScore, score, highScore }) => {
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
   return (
@@ -13,8 +11,8 @@ export const Win = ({ restartGame, winScore, updateWinScore, score, highScore })
           <button
             className='button'
             onClick={() => {
-              updateWinScore(winScore);
-              restartGame(initialGameBoardState, score, highScore);
+              setWinScore(!winScore);
+              restartGame( score, highScore);
             }}
           >
             {' '}

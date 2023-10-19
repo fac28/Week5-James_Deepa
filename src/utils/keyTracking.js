@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export const keyTracking = (updateDirection) => {
+export const useKeyTracking = (updateDirection) => {
   // maybe needs to be turned in to a custom hook?
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {

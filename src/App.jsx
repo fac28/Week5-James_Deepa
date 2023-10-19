@@ -5,10 +5,11 @@ import { Gameover } from './components/Gameover';
 import { Win } from './components/Win';
 import { Newgame } from './components/Newgame';
 import './App.css';
-import { keyTracking } from './helpers/keyTracking';
+import { useKeyTracking } from './utils/keyTracking';
 import { updateBoard } from './helpers/updateBoard';
 import { generateRandomTile } from './helpers/generateRandomTile';
 import { initialGameBoardState } from './helpers/constants';
+
 function App() {
   const [gameBoard, setGameBoard] = useState(() => {
     const localGameBoard = localStorage.getItem('GAMEBOARD');
@@ -29,32 +30,18 @@ function App() {
     return JSON.parse(localHighScore);
   });
 
-  function setGameBoardState(newGameBoard) {
-    return setGameBoard(newGameBoard);
-  }
-  function updateDirection(newDirection) {
-    setDirection(newDirection);
-  }
-  function updateGameOverState(toggleGameOver) {
-    setGameOver(!toggleGameOver);
-  }
-  function updateScore(newScore) {
-    setScore(newScore);
-  }
-  function restartGame(newGameBoard, score, highScore) {
+  function restartGame(score, highScore) {
     if (score > highScore) {
       setHighScore(score);
     }
-    updateScore(0);
-    setGameBoardState(newGameBoard);
+    setScore(0);
+    setGameBoard(initialGameBoardState);
   }
-  function updateWinScore(toggleWinScore) {
-    setWinScore(!toggleWinScore);
-  }
+
   useEffect(() => {
     localStorage.setItem('HIGHSCORETEST', JSON.stringify(highScore));
   }, [highScore]);
-  keyTracking(updateDirection);
+  useKeyTracking(setDirection);
 
   useEffect(() => {
     localStorage.setItem('GAMEBOARD', JSON.stringify(gameBoard));
@@ -65,25 +52,17 @@ function App() {
   useEffect(() => {
     if (direction === '') return;
     function mergeAndGenerate(direction) {
-      updateBoard(
-        direction,
-        gameBoard,
-        score,
-        updateScore,
-        updateWinScore,
-        winScore,
-        (mergedBoard) => {
-          if (JSON.stringify(mergedBoard) !== JSON.stringify(gameBoard)) {
-            setGameBoardState(mergedBoard);
-            generateRandomTile(mergedBoard, (newBoard) => {
-              setGameBoardState(newBoard);
-            });
-          } else if (!gameBoard.flat().includes('') && !gameOver) {
-            updateGameOverState(gameOver);
-          }
-          setDirection('');
-        },
-      );
+      updateBoard(direction, gameBoard, score, setScore, setWinScore, winScore, (mergedBoard) => {
+        if (JSON.stringify(mergedBoard) !== JSON.stringify(gameBoard)) {
+          setGameBoard(mergedBoard);
+          generateRandomTile(mergedBoard, (newBoard) => {
+            setGameBoard(newBoard);
+          });
+        } else if (!gameBoard.flat().includes('') && !gameOver) {
+          setGameOver(!gameOver);
+        }
+        setDirection('');
+      });
     }
     mergeAndGenerate(direction);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -94,20 +73,24 @@ function App() {
       <h1>2048</h1>
       <Gameboard gameBoard={gameBoard} />
       <Newgame restartGame={restartGame} score={score} highScore={highScore} />
-      <Gameover
-        restartGame={restartGame}
-        gameOver={gameOver}
-        updateGameOverState={updateGameOverState}
-        score={score}
-        highScore={highScore}
-      />
-      <Win
-        restartGame={restartGame}
-        score={score}
-        highScore={highScore}
-        updateWinScore={updateWinScore}
-        winScore={winScore}
-      />
+      {gameOver && (
+        <Gameover
+          restartGame={restartGame}
+          gameOver={gameOver}
+          setGameOver={setGameOver}
+          score={score}
+          highScore={highScore}
+        />
+      )}
+      {winScore && (
+        <Win
+          restartGame={restartGame}
+          score={score}
+          highScore={highScore}
+          setWinScore={setWinScore}
+          winScore={winScore}
+        />
+      )}
       <Score score={score} highScore={highScore} />
       {/* <h1>New Game</h1> */}
     </>

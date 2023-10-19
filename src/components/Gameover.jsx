@@ -1,7 +1,4 @@
-import { initialGameBoardState } from '../helpers/constants';
-
-export const Gameover = ({ restartGame, gameOver, updateGameOverState, score, highScore }) => {
-  if (!gameOver) return;
+export const Gameover = ({ restartGame, gameOver, setGameOver, score, highScore }) => {
   return (
     <div className='overlay'>
       <div className='modal'>
@@ -9,8 +6,8 @@ export const Gameover = ({ restartGame, gameOver, updateGameOverState, score, hi
         <button
           className='button'
           onClick={() => {
-            updateGameOverState(gameOver);
-            restartGame(initialGameBoardState, score, highScore);
+            setGameOver(!gameOver);
+            restartGame(score, highScore);
           }}
         >
           {' '}
