@@ -5,30 +5,19 @@ import { Gameover } from './components/Gameover';
 import { Win } from './components/Win';
 import { Newgame } from './components/Newgame';
 import './App.css';
-import { useKeyTracking } from './utils/keyTracking';
+import { useKeyTracking } from './hooks/keyTracking';
 import { updateBoard } from './helpers/updateBoard';
 import { generateRandomTile } from './helpers/generateRandomTile';
 import { initialGameBoardState } from './helpers/constants';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
-  const [gameBoard, setGameBoard] = useState(() => {
-    const localGameBoard = localStorage.getItem('GAMEBOARD');
-    if (localGameBoard == null) return initialGameBoardState;
-    return JSON.parse(localGameBoard);
-  });
+  const [gameBoard, setGameBoard] = useLocalStorage('GAMEBOARD', initialGameBoardState);
   const [direction, setDirection] = useState('');
   const [gameOver, setGameOver] = useState(false);
-  const [score, setScore] = useState(() => {
-    const localScore = localStorage.getItem('SCORE');
-    if (localScore == null) return 0;
-    return JSON.parse(localScore);
-  });
+  const [score, setScore] = useLocalStorage('SCORE', 0);
   const [winScore, setWinScore] = useState(false);
-  const [highScore, setHighScore] = useState(() => {
-    const localHighScore = localStorage.getItem('HIGHSCORETEST');
-    if (localHighScore == null) return 0;
-    return JSON.parse(localHighScore);
-  });
+  const [highScore, setHighScore] = useLocalStorage('HIGHSCORETEST', 0);
 
   function restartGame(score, highScore) {
     if (score > highScore) {
@@ -38,16 +27,7 @@ function App() {
     setGameBoard(initialGameBoardState);
   }
 
-  useEffect(() => {
-    localStorage.setItem('HIGHSCORETEST', JSON.stringify(highScore));
-  }, [highScore]);
   useKeyTracking(setDirection);
-
-  useEffect(() => {
-    localStorage.setItem('GAMEBOARD', JSON.stringify(gameBoard));
-    localStorage.setItem('SCORE', JSON.stringify(score));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameBoard]);
 
   useEffect(() => {
     if (direction === '') return;
