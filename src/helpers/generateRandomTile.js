@@ -1,4 +1,4 @@
-export const generateRandomTile = (gameBoard, updateGameBoard) => {
+export const generateRandomTile = (gameBoard, setGameBoard) => {
   const newGameBoard = [...gameBoard];
   const indexOfAll = (arr, val) => arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), []);
   const emptyCells = indexOfAll(newGameBoard.flat(), '');
@@ -9,5 +9,5 @@ export const generateRandomTile = (gameBoard, updateGameBoard) => {
   const rowIndex = Math.floor(emptyCells[indexChoice] / 4);
   const columnIndex = emptyCells[indexChoice] % 4;
   newGameBoard[rowIndex][columnIndex] = '2';
-  updateGameBoard(newGameBoard);
+  setGameBoard(newGameBoard);
 };
